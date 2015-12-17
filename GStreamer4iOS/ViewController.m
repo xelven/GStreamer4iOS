@@ -51,6 +51,8 @@
         [self.view makeToast:@"GStreamer Init finished"];
         [self.pauseButton setEnabled:YES];
         [self.playButton setEnabled:YES];
+        NSString* uri = @"http://docs.gstreamer.com/media/sintel_trailer-368p.ogv";
+        [gst_backend setMediaURI:uri];
     });
 }
 
@@ -59,6 +61,16 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.view makeToast:message];
     });
+}
+
+-(void)mediaSizeChanged:(NSInteger)width height:(NSInteger)height
+{
+    NSLog(@"mediaSizeChanged: %d x %d",width,height);
+}
+
+-(void)setCurrentPosition:(NSInteger)position duration:(NSInteger)duration
+{
+    NSLog(@"setCurrentPostition: %d, %d",position,duration);
 }
 
 @end
